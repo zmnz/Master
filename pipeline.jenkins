@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage("First step") {
             steps {
-                sh 'docker rename test-container work-container'
+                sh 'docker rm test-container'
             }
         }
         stage("Second step") {
@@ -21,11 +21,5 @@ pipeline {
                 sh 'docker run -d -v /webroot/Master:/var/www/html -p 8090:80 --name test-container nginx-image'
             }
         }
-        stage("Third step") {
-            steps {
-                sh 'docker rm work-container'
-            }
-        }
-
     }
 }
